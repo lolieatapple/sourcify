@@ -13,7 +13,7 @@ import Web3 from 'web3';
 import {
   decode as bytecodeDecode,
   splitAuxdata,
-} from '@ethereum-sourcify/bytecode-utils';
+} from '@wandevs/bytecode-utils';
 import { EVM } from '@ethereumjs/evm';
 import { EEI } from '@ethereumjs/vm';
 import { Address } from '@ethereumjs/util';
@@ -226,7 +226,7 @@ export async function matchWithSimulation(
   }
   const initcode = Buffer.from(
     recompiledCreaionBytecode +
-      (abiEncodedConstructorArguments ? abiEncodedConstructorArguments : ''),
+    (abiEncodedConstructorArguments ? abiEncodedConstructorArguments : ''),
     'hex'
   );
 
@@ -237,11 +237,11 @@ export async function matchWithSimulation(
     /* eslint-disable indent */
     caller: msgSender
       ? new Address(
-          Buffer.from(
-            msgSender.startsWith('0x') ? msgSender.slice(2) : msgSender,
-            'hex'
-          )
+        Buffer.from(
+          msgSender.startsWith('0x') ? msgSender.slice(2) : msgSender,
+          'hex'
         )
+      )
       : undefined,
     /* eslint-enable indent */
   });

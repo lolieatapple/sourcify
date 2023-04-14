@@ -123,7 +123,7 @@ export class CheckedContract {
       // Sometimes the compiler returns empty object (not falsey). Convert it to undefined (falsey).
       immutableReferences:
         contract.evm.deployedBytecode.immutableReferences &&
-        Object.keys(contract.evm.deployedBytecode.immutableReferences).length >
+          Object.keys(contract.evm.deployedBytecode.immutableReferences).length >
           0
           ? contract.evm.deployedBytecode.immutableReferences
           : undefined,
@@ -306,10 +306,10 @@ function createJsonInputFromMetadata(
     metadata: solcJsonInput?.settings?.metadata || {},
   };
 
-  solcJsonInput.settings.outputSelection['*'] =
-    solcJsonInput.settings.outputSelection['*'] || {};
+  solcJsonInput.settings.outputSelection[contractPath] =
+    solcJsonInput.settings.outputSelection[contractPath] || {};
 
-  solcJsonInput.settings.outputSelection['*'][contractName] = [
+  solcJsonInput.settings.outputSelection[contractPath][contractName] = [
     'evm.bytecode.object',
     'evm.deployedBytecode.object',
     'evm.deployedBytecode.immutableReferences',
